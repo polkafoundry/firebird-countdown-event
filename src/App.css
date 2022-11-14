@@ -1,0 +1,49 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@font-face {
+  font-family: "TTHoves";
+  src: url(../public/fonts/TTHoves-Regular.woff) format("woff"),
+    url(../public/fonts/TTHoves-Regular.woff2) format("woff2"),
+    url(../public/fonts/TTHoves-Regular.ttf) format("truetype"),
+    url(../public/fonts/TTHoves-Regular.ttf) format("svg"),
+    url(../public/fonts/TTHoves-Regular.ttf) format("embedded-opentype");
+}
+@font-face {
+  font-family: "TTHoves Medium";
+  src: url(../public/fonts/TTHoves-Medium.woff) format("woff"),
+    url(../public/fonts/TTHoves-Medium.woff2) format("woff2"),
+    url(../public/fonts/TTHoves-Medium.ttf) format("truetype"),
+    url(../public/fonts/TTHoves-Medium.ttf) format("svg"),
+    url(../public/fonts/TTHoves-Medium.ttf) format("embedded-opentype");
+}
+@font-face {
+  font-family: "TTHoves Bold";
+  src: url(../public/fonts/TTHoves-Bold.woff) format("woff"),
+    url(../public/fonts/TTHoves-Bold.woff2) format("woff2"),
+    url(../public/fonts/TTHoves-Bold.ttf) format("truetype"),
+    url(../public/fonts/TTHoves-Bold.ttf) format("svg"),
+    url(../public/fonts/TTHoves-Bold.ttf) format("embedded-opentype");
+}
+
+@layer components {
+  .btn-rounded {
+    @apply cursor-pointer p-4 rounded-full font-tthoves font-semibold flex justify-center duration-300 transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-main text-white hover:outline hover:outline-1 hover:outline-main hover:bg-white hover:text-main;
+  }
+
+  .btn-black {
+    @apply bg-black text-white hover:outline hover:outline-1 hover:outline-black hover:bg-white hover:text-black;
+  }
+
+  .title-background {
+    @apply text-20/28 font-tthoves font-bold text-white py-1.5 pl-[30px] uppercase min-w-[275px];
+    background: url("./assets/images/bg-group-stage.svg") no-repeat;
+    background-position: top left;
+  }
+}
