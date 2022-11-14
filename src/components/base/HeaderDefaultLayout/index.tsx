@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { URLS } from "../../../constants";
 import { WalletContext } from "../../../context/WalletContext";
@@ -24,8 +24,31 @@ const HeaderDefaultLayout = () => {
   const { setShowModal, connectedAccount } = useContext(WalletContext);
   const { isWrongChain, nativeCurrency, realTimeBalance } = useMyWeb3();
 
-  const [openMenuMobile, setOpenMenuMobile] = useState<boolean>(false);
   const location = useLocation();
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
+  const [openMenuMobile, setOpenMenuMobile] = useState<boolean>(false);
+  const [opacity, setOpacity] = useState<number>(0);
+  const maxYOffset = 1000;
+
+  useEffect(() => {
+    if (scrollPosition > maxYOffset) return;
+    const newOpacity = scrollPosition / maxYOffset - 0.2;
+
+    setOpacity(newOpacity);
+  }, [scrollPosition]);
+
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleOpenHeader = () => {
     setOpenMenuMobile((prevState) => !prevState);
@@ -77,7 +100,12 @@ const HeaderDefaultLayout = () => {
   };
 
   return (
-    <div className="w-full bg-black absolute h-20 flex justify-center z-20">
+    <div
+      className="fixed top-0 -translate-x-1/2 left-1/2 w-full bg-black h-20 flex justify-center z-20"
+      style={{
+        background: `rgba(0, 0, 0,${opacity})`,
+      }}
+    >
       <nav
         className={clsx(
           "w-full h-full flex items-center justify-between max-w-screen-main text-white",

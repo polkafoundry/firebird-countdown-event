@@ -38,8 +38,8 @@ export const socialsData: Array<SocialItemTypes> = [
     img: "/images/socials/reddit.svg",
     imgHover: "/images/socials/reddit.svg",
     label: "Reddit",
-    url: "https://www.reddit.com/r/firebird/",
-    // username: "r/firebird"
+    url: "https://www.reddit.com/r/firebirdchain/",
+    username: "r/firebirdchain",
   },
   {
     img: "/images/socials/announcement.svg",
