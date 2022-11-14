@@ -53,10 +53,10 @@ const EventCountdownPage = () => {
   const { account } = useMyWeb3();
 
   const { unityProvider, isLoaded, sendMessage } = useUnityContext({
-    loaderUrl: "buildUnity/FlyWithFirebird_1.0.0.loader.js",
-    dataUrl: "buildUnity/FlyWithFirebird_1.0.0.data",
-    frameworkUrl: "buildUnity/FlyWithFirebird_1.0.0.framework.js",
-    codeUrl: "buildUnity/FlyWithFirebird_1.0.0.wasm",
+    loaderUrl: "buildUnity/FlyWithFirebird_1.0.1.loader.js",
+    dataUrl: "buildUnity/FlyWithFirebird_1.0.1.data",
+    frameworkUrl: "buildUnity/FlyWithFirebird_1.0.1.framework.js",
+    codeUrl: "buildUnity/FlyWithFirebird_1.0.1.wasm",
     webglContextAttributes: {
       preserveDrawingBuffer: true,
     },
