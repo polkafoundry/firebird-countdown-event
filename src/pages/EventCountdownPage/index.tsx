@@ -203,7 +203,10 @@ const EventCountdownPage = () => {
           )}
         </div>
 
-        <img src="/images/powered-mirai.png" alt="" />
+        <div className="flex flex-col sm:flex-row mt-5 items-center">
+          <span className="text-28/36 font-semibold mr-2">Powered by</span>
+          <img src="/images/powered-mirai.svg" alt="" className="max-h-14" />
+        </div>
       </div>
     </DefaultLayout>
   );
