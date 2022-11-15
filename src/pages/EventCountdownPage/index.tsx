@@ -21,6 +21,8 @@ const CustomField = ({
   return (
     <a
       href={href}
+      target="_blank"
+      rel="noreferrer"
       className={clsx(
         styles.iconHoverAnimated,
         "flex bg-[#F7F7F8] rounded-[20px] h-[72px] px-6 items-center cursor-pointer w-full md:max-w-[384px]",
@@ -159,12 +161,12 @@ const EventCountdownPage = () => {
 
           <div className="flex flex-col items-center md:items-end space-y-2 mt-6 md:mt-0">
             <CustomField
-              href="/#"
+              href="https://medium.com/firebirdchain/firebird-public-testnet-phoenix-cup-warm-up-minigame-33430438b40b"
               iconUri="/images/icon-hover-search.svg"
               label="How to play"
             />
             <CustomField
-              href="/#"
+              href="https://medium.com/firebirdchain/firebird-public-testnet-phoenix-cup-warm-up-minigame-33430438b40b"
               iconUri="/images/icon-hover-gift.svg"
               label="Reward distribution"
             />
