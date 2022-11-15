@@ -103,7 +103,7 @@ const HeaderDefaultLayout = () => {
 
   return (
     <div
-      className="fixed top-0 -translate-x-1/2 left-1/2 w-full bg-black h-20 flex justify-center z-20"
+      className="fixed top-0 w-full bg-black h-20 flex justify-center z-20"
       style={{
         background: `rgba(0, 0, 0,${opacity})`,
       }}
