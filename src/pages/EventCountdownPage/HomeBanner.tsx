@@ -37,7 +37,6 @@ const ColonField = () => (
 );
 
 const HomeBanner = () => {
-  // const { day, hour, minute, second } = useCountDown(new Date("11/20/2022"));
   const { day, hour, minute, second } = useCountDown(
     new Date(Date.UTC(2022, 10, 20, 12, 0, 0)),
   );
@@ -83,7 +82,10 @@ const HomeBanner = () => {
 
       <img
         src="/images/scoll-down.svg"
-        className={clsx("absolute right-1/2 bottom-10", styles.scrollDown)}
+        className={clsx(
+          "absolute left-0 right-0 mx-auto bottom-10",
+          styles.scrollDown,
+        )}
         alt=""
       />
     </div>
