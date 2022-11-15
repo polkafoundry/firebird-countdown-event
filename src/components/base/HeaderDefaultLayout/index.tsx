@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { URLS } from "../../../constants";
+import { LANDING_PAGE_URL, URLS } from "../../../constants";
 import { WalletContext } from "../../../context/WalletContext";
 import { useMyWeb3 } from "../../../hooks/useMyWeb3";
 import { displayWalletAddress } from "../../../utils";
@@ -29,10 +29,10 @@ const HeaderDefaultLayout = () => {
   const [openMenuMobile, setOpenMenuMobile] = useState<boolean>(false);
   const [opacity, setOpacity] = useState<number>(0);
   const maxYOffset = 1000;
+  const maxOpacity = 0.8;
 
   useEffect(() => {
-    if (scrollPosition > maxYOffset) return;
-    const newOpacity = scrollPosition / maxYOffset - 0.2;
+    const newOpacity = Math.min(scrollPosition / maxYOffset - 0.2, maxOpacity);
 
     setOpacity(newOpacity);
   }, [scrollPosition]);
@@ -43,6 +43,8 @@ const HeaderDefaultLayout = () => {
   };
 
   useEffect(() => {
+    handleScroll();
+
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
@@ -115,16 +117,16 @@ const HeaderDefaultLayout = () => {
         )}
       >
         <div className="flex">
-          <a href="/">
+          <a href={LANDING_PAGE_URL} target="_blank" rel="norefferer">
             <img src="/images/logo-text.svg" alt="" />
           </a>
           <img
-            src="/images/landing-page/banner-text.png"
+            src="/images/logo-worldcup.png"
             alt=""
-            className="ml-2 hidden lg:block"
+            className="ml-2 hidden md:block"
           />
         </div>
-        <div className={clsx("gap-5 hidden", "md:flex md:items-center")}>
+        <div className={clsx("hidden space-x-5", "md:flex md:items-center")}>
           {routes.map((item: RouteTypes, index: number) => (
             <a
               key={index}
@@ -143,7 +145,7 @@ const HeaderDefaultLayout = () => {
           {connectedAccount && (
             <button
               className={clsx(
-                "ml-5 lg:ml-10 px-4 py-1.5 flex rounded-lg text-14/20 text-white font-tthoves items-center",
+                "ml-5 lg:ml-7 px-4 py-1.5 flex rounded-lg text-14/20 text-white font-tthoves items-center",
                 styles.backgroundGradient,
                 !isWrongChain && "pointer-events-none",
               )}

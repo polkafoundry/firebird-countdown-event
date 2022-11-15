@@ -1,6 +1,6 @@
 import Tippy from "@tippyjs/react";
 import clsx from "clsx";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import DefaultLayout from "../../components/layout/DefaultLayout";
@@ -49,8 +49,12 @@ const socials: Array<SocialItemTypes> = [
   socialsData[5],
 ];
 
+const SIZE_RATE = 960 / 600;
+
 const EventCountdownPage = () => {
   const { account } = useMyWeb3();
+  const unityRef = useRef<any>(null);
+  const [unityFrameHeight, setUnityFrameHeight] = useState<number>(700);
 
   const { unityProvider, isLoaded, sendMessage } = useUnityContext({
     loaderUrl: "buildUnity/FlyWithFirebird_1.0.1.loader.js",
@@ -62,11 +66,57 @@ const EventCountdownPage = () => {
     },
   });
 
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  function handleResize() {
+    const newHeight = unityRef?.current?.offsetWidth / SIZE_RATE;
+    setUnityFrameHeight(newHeight);
+  }
   // sending address to unity
   useEffect(() => {
     if (!account) return;
     sendMessage("JavascriptHook", "SetWalletAddress", account);
   }, [account, isLoaded]);
+
+  useEffect(() => {
+    // set default height for window width
+    handleResize();
+  }, [unityRef]);
+
+  const renderUnityFrame = () => {
+    return (
+      <>
+        {!isLoaded ? (
+          <>
+            <p
+              className={clsx(
+                "text-16/20 xs:text-26/32 md:text-40/52 font-semibold mt-5 text-center",
+                styles.colorTitle,
+              )}
+            >
+              Play your game in seconds
+            </p>
+            <div className={clsx(styles.btnPlay, "w-20 xs:w-32 md:w-[160px]")}>
+              <img
+                src="/images/btn-play.svg"
+                alt=""
+                className={styles.bgBtnPlay}
+              />
+              <img
+                src="/images/icon-play.svg"
+                alt=""
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 xs:w-6 md:w-10"
+              />
+            </div>
+          </>
+        ) : null}
+        <Unity className="w-full h-full" unityProvider={unityProvider} />
+      </>
+    );
+  };
 
   return (
     <DefaultLayout>
@@ -149,15 +199,18 @@ const EventCountdownPage = () => {
           </div>
         </div>
 
-        {/* <Button onClick={() => requestFullscreen(true)}>full screen</Button> */}
         <div
+          ref={unityRef}
           className={clsx(
-            "w-full max-w-[960px] h-[180px] mt-12 text-white flex flex-col items-center relative",
-            "xxs:h-[250px] xs:h-[350px] sm:h-[450px] md:h-[600px] sm:mt-[100px]",
+            "w-full h-[180px] mt-12 text-white flex flex-col items-center relative",
+            "sm:mt-[100px]",
             styles.gameFrame,
           )}
+          style={{
+            height: unityFrameHeight,
+          }}
         >
-          {isMobile && (
+          {isMobile ? (
             <p
               className={clsx(
                 "text-16/20 font-semibold mt-16 px-14 text-center",
@@ -166,46 +219,20 @@ const EventCountdownPage = () => {
             >
               Please play this game using PC or laptop.
             </p>
-          )}
-          {!isMobile && (
-            <>
-              {!isLoaded ? (
-                <>
-                  <p
-                    className={clsx(
-                      "text-16/20 xs:text-26/32 md:text-40/52 font-semibold mt-5 text-center",
-                      styles.colorTitle,
-                    )}
-                  >
-                    Play your game in seconds
-                  </p>
-                  <div
-                    className={clsx(
-                      styles.btnPlay,
-                      "w-20 xs:w-32 md:w-[160px]",
-                    )}
-                  >
-                    <img
-                      src="/images/btn-play.svg"
-                      alt=""
-                      className={styles.bgBtnPlay}
-                    />
-                    <img
-                      src="/images/icon-play.svg"
-                      alt=""
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 xs:w-6 md:w-10"
-                    />
-                  </div>
-                </>
-              ) : null}
-              <Unity className="w-full h-full" unityProvider={unityProvider} />
-            </>
+          ) : (
+            renderUnityFrame()
           )}
         </div>
 
         <div className="flex flex-col sm:flex-row mt-5 items-center">
-          <span className="text-28/36 font-semibold mr-2">Powered by</span>
-          <img src="/images/powered-mirai.svg" alt="" className="max-h-14" />
+          <span className="text-14/24 xs:text-24/32 font-semibold mr-2">
+            Powered by
+          </span>
+          <img
+            src="/images/powered-mirai.svg"
+            alt=""
+            className="max-h-7 xs:max-h-10"
+          />
         </div>
       </div>
     </DefaultLayout>

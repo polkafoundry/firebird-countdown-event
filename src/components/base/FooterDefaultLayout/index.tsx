@@ -84,19 +84,24 @@ const FooterDefaultLayout = () => {
               miss anything!
             </p>
             <div className="flex gap-3 mt-3">
-              {socialsData.map((item: SocialItemTypes, index: number) => (
-                <Tippy key={index} content={item.label} placement="bottom">
-                  <a
-                    key={index}
-                    href={item.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={clsx({ "pointer-events-none": !item.username })}
-                  >
-                    <img src={item.img} alt="" width={28} height={28} />
-                  </a>
-                </Tippy>
-              ))}
+              {socialsData.map(
+                (item: SocialItemTypes, index: number) =>
+                  item?.username && (
+                    <Tippy key={index} content={item.label} placement="bottom">
+                      <a
+                        key={index}
+                        href={item.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={clsx({
+                          "pointer-events-none": !item.username,
+                        })}
+                      >
+                        <img src={item.img} alt="" width={28} height={28} />
+                      </a>
+                    </Tippy>
+                  ),
+              )}
             </div>
           </div>
 
