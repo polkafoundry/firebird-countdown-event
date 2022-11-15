@@ -228,11 +228,17 @@ const EventCountdownPage = () => {
           <span className="text-14/24 xs:text-24/32 font-semibold mr-2">
             Powered by
           </span>
-          <img
-            src="/images/powered-mirai.svg"
-            alt=""
-            className="max-h-7 xs:max-h-10"
-          />
+          <a
+            href="https://miraistudio.games/"
+            target={"_blank"}
+            rel="norefferer"
+          >
+            <img
+              src="/images/powered-mirai.svg"
+              alt=""
+              className="max-h-7 xs:max-h-10"
+            />
+          </a>
         </div>
       </div>
     </DefaultLayout>
