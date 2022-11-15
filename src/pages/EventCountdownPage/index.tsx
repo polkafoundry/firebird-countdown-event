@@ -159,12 +159,12 @@ const EventCountdownPage = () => {
 
           <div className="flex flex-col items-center md:items-end space-y-2 mt-6 md:mt-0">
             <CustomField
-              href="/"
+              href="/#"
               iconUri="/images/icon-hover-search.svg"
               label="How to play"
             />
             <CustomField
-              href="/"
+              href="/#"
               iconUri="/images/icon-hover-gift.svg"
               label="Reward distribution"
             />
