@@ -37,7 +37,10 @@ const ColonField = () => (
 );
 
 const HomeBanner = () => {
-  const { day, hour, minute, second } = useCountDown(new Date("11/20/2022"));
+  // const { day, hour, minute, second } = useCountDown(new Date("11/20/2022"));
+  const { day, hour, minute, second } = useCountDown(
+    new Date(Date.UTC(2022, 10, 20, 12, 0, 0)),
+  );
 
   return (
     <div
