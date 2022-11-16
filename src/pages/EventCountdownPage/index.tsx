@@ -95,7 +95,7 @@ const EventCountdownPage = () => {
           <>
             <p
               className={clsx(
-                "text-16/20 xs:text-26/32 md:text-40/52 font-semibold mt-5 text-center",
+                "text-16/20 xs:text-26/32 md:text-40/52 font-semibold mt-10 sm:mt-20 text-center",
                 styles.colorTitle,
               )}
             >
