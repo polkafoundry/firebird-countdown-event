@@ -58,6 +58,12 @@ const EventCountdownPage = () => {
   const unityRef = useRef<any>(null);
   const [unityFrameHeight, setUnityFrameHeight] = useState<number>(700);
 
+  useEffect(() => {
+    window.location.replace(
+      "https://phoenixcup.firebirdchain.com/introduction",
+    );
+  }, []);
+
   const { unityProvider, isLoaded, sendMessage } = useUnityContext({
     loaderUrl: "buildUnity/FlyWithFirebird_1.0.1.loader.js",
     dataUrl: "buildUnity/FlyWithFirebird_1.0.1.data",
