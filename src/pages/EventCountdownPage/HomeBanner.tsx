@@ -38,7 +38,7 @@ const ColonField = () => (
 
 const HomeBanner = () => {
   const { day, hour, minute, second } = useCountDown(
-    new Date(Date.UTC(2022, 10, 20, 12, 0, 0)),
+    new Date(Date.UTC(2022, 10, 20, 0, 0, 0)),
   );
 
   return (
@@ -77,7 +77,7 @@ const HomeBanner = () => {
         <TimeField label="SECONDS" value={second} />
       </div>
       <span className="text-14/32 xs:text-18/32 lg:text-24/32 tracking-widest mt-5 md:mt-7 font-semibold">
-        [ 12 UTC - Sunday, 20th Nov 2022 ]
+        [ 0 UTC - Sunday, 20th Nov 2022 ]
       </span>
 
       <img
